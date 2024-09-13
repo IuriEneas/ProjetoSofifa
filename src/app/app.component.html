@@ -1,26 +1,20 @@
 <!-- app.component.html -->
-<div class="input-container">
-  <div (paste)="onPaste($event)">
-    <button (click)="triggerFileInput()">Selecionar Imagem</button>
-    <input
-      type="file"
-      accept="image/*"
-      (change)="onFileSelected($event)"
-      #fileInput
-      style="display: none"
-    />
+<div *ngIf="isLoading" class="loading" >
+  <div class="c-loader"></div>
+</div>
+<div class="input-container" (paste)="onPaste($event)">
+  <div class="card">
+    <img *ngIf="selectedImage" [src]="selectedImage" alt="Imagem Selecionada" />
+    <div class="row">
+      <button (click)="triggerFileInput()">Selecionar Imagem</button>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        #fileInput
+        style="display: none"
+      />
+      <button (click)="downloadTxtFile()">Download script</button>
+    </div>
   </div>
 </div>
-
-<img *ngIf="selectedImage" [src]="selectedImage" alt="Imagem Selecionada" />
-
-<div *ngIf="ocrResult">
-  <h3>Texto Extraído:</h3>
-  <p>{{ ocrResult }}</p>
-</div>
-
-<div>
-  <input type="text" [value]="script" readonly>
-  <button (click)="downloadTxtFile()">Copiar para área de transferência</button>
-</div>
-

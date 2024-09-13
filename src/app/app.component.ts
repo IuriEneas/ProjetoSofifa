@@ -12,6 +12,7 @@ export class AppComponent {
   selectedImage: string | ArrayBuffer | null | undefined = null;
   ocrResult: string = '';
   list: string[] = [];
+  isLoading: boolean = false;
 
   script = '';
 
@@ -22,6 +23,7 @@ export class AppComponent {
   }
 
   onFileSelected(event: Event) {
+    this.isLoading = true;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
@@ -37,6 +39,7 @@ export class AppComponent {
   }
 
   onPaste(event: ClipboardEvent): void {
+    this.isLoading = true;
     const clipboardItems = event.clipboardData?.items;
 
     if (clipboardItems) {
@@ -118,7 +121,7 @@ export class AppComponent {
             this.list[28],
           )
         );
-        debugger
+        this.isLoading = false;
       })
       .catch((error: any) => {
         console.error('Erro no OCR:', error);
