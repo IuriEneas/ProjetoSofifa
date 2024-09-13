@@ -75,44 +75,45 @@ export class AppComponent {
       }
     )
       .then((result: { data: { text: string } }) => {
-        this.ocrResult = result.data.text.replace(/\b\d\b[Aa\n]\s+/g, '');
+        this.ocrResult = result.data.text.replace(/\b[Aa\n]\s+/g, '');
         this.ocrResult = this.ocrResult.replace(/[^0-9\s]/g, '');
         this.ocrResult = this.ocrResult.replace(/\n+/g, '');
+        this.ocrResult = this.ocrResult.replace(/\b\d\b/g, '');
         this.ocrResult = this.ocrResult.replace(/\s+/g, ' ');
 
         this.list = this.ocrResult.split(' ');
 
         this.script = getScript(
           new Player(
+            this.list[0],
+            this.list[1],
             this.list[2],
+            this.list[3],
             this.list[4],
+            this.list[5],
             this.list[6],
+            this.list[7],
             this.list[8],
+            this.list[9],
             this.list[10],
+            this.list[11],
             this.list[12],
+            this.list[13],
             this.list[14],
+            this.list[15],
+            this.list[16],
             this.list[17],
+            this.list[18],
             this.list[19],
+            this.list[20],
             this.list[21],
+            this.list[22],
+            this.list[23],
             this.list[24],
+            this.list[25],
             this.list[26],
-            this.list[29],
-            this.list[32],
-            this.list[34],
-            this.list[36],
-            this.list[38],
-            this.list[40],
-            this.list[42],
-            this.list[44],
-            this.list[47],
-            this.list[49],
-            this.list[51],
-            this.list[53],
-            this.list[55],
-            this.list[58],
-            this.list[60],
-            this.list[62],
-            this.list[64]
+            this.list[27],
+            this.list[28],
           )
         );
       })
