@@ -166,7 +166,7 @@ function getScript(player: Player): string {
   SendText "\`t"
   SendText "${player.dribbling}"
   SendText "\`t"
-  SendText "${0}"
+  SendText "0"
   SendText "\`t"
   SendText "${player.fkAcc}"
   SendText "\`t"
