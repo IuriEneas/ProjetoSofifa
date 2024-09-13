@@ -76,7 +76,7 @@ export class AppComponent {
     )
       .then((result: { data: { text: string } }) => {
         this.ocrResult = result.data.text.replace(/\b[Aa\n]\s+/g, '');
-        this.ocrResult = this.ocrResult.replace(/[^a-zA-Z0-9\s]/g, '');
+        this.ocrResult = this.ocrResult.replace(/[^0-9\s]/g, '');
         this.ocrResult = this.ocrResult.replace(/\n+/g, '');
         this.ocrResult = this.ocrResult.replace(/\s+/g, ' ');
 
