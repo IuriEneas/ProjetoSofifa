@@ -69,7 +69,7 @@ export class AppComponent {
   runTesseract(file: File) {
     Tesseract.recognize(
       file,
-      'eng', // idioma
+      'por', // idioma
       {
         logger: (info: any) => console.log(info), // Logs de progresso
       }
@@ -81,11 +81,12 @@ export class AppComponent {
         this.ocrResult = this.ocrResult.replace(/\b\d\b/g, '');
         this.ocrResult = this.ocrResult.replace(/\s+/g, ' ');
 
+        // this.ocrResult = result.data.text; 
+
         this.list = this.ocrResult.split(' ');
 
         this.script = getScript(
           new Player(
-            this.list[0],
             this.list[1],
             this.list[2],
             this.list[3],
@@ -113,9 +114,11 @@ export class AppComponent {
             this.list[25],
             this.list[26],
             this.list[27],
+            this.list[29],
             this.list[28],
           )
         );
+        debugger
       })
       .catch((error: any) => {
         console.error('Erro no OCR:', error);
@@ -149,6 +152,7 @@ export class AppComponent {
 }
 
 function getScript(player: Player): string {
+  debugger
   return `^1::{
   SendText "${player.crossing}"
   SendText "\`t"
@@ -162,7 +166,7 @@ function getScript(player: Player): string {
   SendText "\`t"
   SendText "${player.dribbling}"
   SendText "\`t"
-  SendText "${player.curve}"
+  SendText "${0}"
   SendText "\`t"
   SendText "${player.fkAcc}"
   SendText "\`t"
